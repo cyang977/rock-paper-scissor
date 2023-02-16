@@ -1,67 +1,50 @@
-let sign = prompt('Do you want to play "Rock, Paper, Scissors?"');
+let sign = prompt('Do you want to play "Rock, Paper, Scissors? Yes or No?"');
 
 if (sign.toLowerCase() === "yes") {
-  game(getHumanChoice(), getComputerChoice());
+  console.log(round());
 } else {
   alert("Maybe next time.")
 }
 
-function round() {
-  for (i = 1; i < 5; i++) {
 
-  }
-}
+function round() {
+  game(getHumanChoice(), getComputerChoice());
+} 
 
 function game(a , b) {
-  if (a === "rock"){  
-    switch(a === "rock") {
-      case (b === "rock"):
-        alert("We have a tie. Redo");
-        game(getHumanChoice(), getComputerChoice());
-        break;  
-      case (b === "paper"):
-        alert("Paper beats Rock. You lose.");
-        break;  
-      case (b === "scissors"):
-        alert("Rock beats Scissors. You win.");
-        break;  
-    }
-  } else if (a === "paper") {
-    switch(a === "paper") {
-      case (b === "paper"):
-        alert("We have a tie. Redo");
-        game(getHumanChoice(), getComputerChoice());
-        break;  
-      case (b === "rock"):
-        alert("Paper beats Rock. You win.");
-        break;  
-      case (b === "scissors"):
-        alert("Scissors beats paper. You lose.");
-        break;  
-    }
+  if (a === "rock" && b === "paper") {
+    alert("You lose. Rock loses to Paper.");
+      return 2;
+  } else if (a === "rock" && b === "scissors") {
+      alert("You win. Rock beats Scissors.");
+      return 1;
+  } else if (a === "paper" && b === "rock") {
+      alert("You win. Paper beats Rock.");
+      return 1;
+  } else if (a === "paper" && b === "scissors") {
+      alert("You lose. Paper loses to Scissors.");
+      return 2;
+  } else if (a === "scissors" && b === "paper") {
+      alert("You win. Scissors beats Paper.");
+      return 1;
+  } else if (a === "scissors" && b ==="rock"){
+      alert("You lose. Scissors loses to Rock.")
+      return 2;
   } else {
-    switch(a === "scissors") {
-      case (b === "scissors"):
-        alert("We have a tie. Redo");
-        game(getHumanChoice(), getComputerChoice());
-        break;  
-      case (b === "paper"):
-        alert("Scissors beats paper. You win.");
-        break;  
-      case (b === "rock"):
-        alert("Rock beats Scissors. You lose.");
-        break;  
-    }
+      alert("We have a tie.")
+      return 0;
   }
 }
+
 
 function getHumanChoice() {
   let choice = prompt("Rock, Paper, or Scissors?");
   if (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
     alert("Invalid Answer");
     getHumanChoice();
+  } else {
+    return choice.toLowerCase();
   }
-  return choice.toLowerCase();
 }
 
 function getComputerChoice() {
