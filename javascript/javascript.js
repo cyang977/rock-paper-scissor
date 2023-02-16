@@ -1,14 +1,35 @@
 let sign = prompt('Do you want to play "Rock, Paper, Scissors? Yes or No?"');
 
 if (sign.toLowerCase() === "yes") {
-  console.log(round());
+  let finalScore = round();
+  console.log(finalScore);
+  let humanScore = finalScore.charAt(0);
+  console.log(humanScore);
+  let comScore = finalScore.charAt(1);
+  console.log(comScore);
+  alert(`Human has ${humanScore} wins. Computer has ${comScore}.`)
 } else {
   alert("Maybe next time.")
 }
 
 
 function round() {
-  game(getHumanChoice(), getComputerChoice());
+  let result;
+  let score = 0;
+  for (i = 1; i <=5; i ++){
+    result = game(getHumanChoice(), getComputerChoice());
+    console.log(result);
+    if (result === 1) {
+      score += 10;
+      console.log(score);
+    } else if (result === 2) {
+      score += 1;
+      console.log(score);
+    } else {
+      i--
+    }
+  }
+  return score.toString()
 } 
 
 function game(a , b) {
