@@ -6,6 +6,12 @@ if (sign.toLowerCase() === "yes") {
   alert("Maybe next time.")
 }
 
+function round() {
+  for (i = 1; i < 5; i++) {
+
+  }
+}
+
 function game(a , b) {
   if (a === "rock"){  
     switch(a === "rock") {
