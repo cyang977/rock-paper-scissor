@@ -12,7 +12,7 @@ if (sign.toLowerCase() === "yes") {
   alert("Maybe next time.")
 }
 
-
+// This takes the game() and loop it 5 times. Then it gives "score" a value based on results.
 function round() {
   let result;
   let score = 0;
@@ -32,6 +32,7 @@ function round() {
   return score.toString()
 } 
 
+// This takes input and compares them to eachother. Depending on the answer, it will return a set number
 function game(a , b) {
   if (a === "rock" && b === "paper") {
     alert("You lose. Rock loses to Paper.");
@@ -57,7 +58,7 @@ function game(a , b) {
   }
 }
 
-
+// This gets an input from the user. They can only chose from "rock", "paper", or "scissors"
 function getHumanChoice() {
   let choice = prompt("Rock, Paper, or Scissors?");
   if (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
@@ -68,6 +69,7 @@ function getHumanChoice() {
   }
 }
 
+// This uses a random number generator to choose an answer for the computer
 function getComputerChoice() {
   let choice;
     let randomNum = Math.floor(Math.random() * 3) + 1; 
