@@ -12,11 +12,20 @@ if (sign.toLowerCase() === "yes") {
   alert("Maybe next time.")
 }
 
+// Create a Nodelist then adding the same eventListener to nodes in that list
+// Inside forEach, need "selector/element" with arrow function to event listener
+// Inside .addEventListener must need 'event' and function to run when event is triggered
+// Event listener contains "element" name and .addEventListener('event', function)
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+  button.addEventListener('click', round);
+}); 
+
 // This takes the game() and loop it 5 times. Then it gives "score" a value based on results.
-function round() {
+function round(e) {
   let result;
   let score = 0;
-  for (i = 1; i <=5; i ++){
+  //for (i = 1; i <= 5; i++){
     result = game(getHumanChoice(), getComputerChoice());
     console.log(result);
     if (result === 1) {
@@ -28,7 +37,7 @@ function round() {
     } else {
       i--
     }
-  }
+  //}
   return score.toString()
 } 
 
@@ -72,14 +81,14 @@ function getHumanChoice() {
 // This uses a random number generator to choose an answer for the computer
 function getComputerChoice() {
   let choice;
-    let randomNum = Math.floor(Math.random() * 3) + 1; 
-      if (randomNum === 1) {
-          choice = "rock";
-      } else if (randomNum === 2) {
-          choice = "paper";
-      } else {
-          choice = "scissors";
-      }
-    return choice; 
+  let randomNum = Math.floor(Math.random() * 3) + 1; 
+    if (randomNum === 1) {
+        choice = "rock";
+    } else if (randomNum === 2) {
+        choice = "paper";
+    } else {
+        choice = "scissors";
+    }
+  return choice; 
 }
 
