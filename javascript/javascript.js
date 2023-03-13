@@ -1,28 +1,33 @@
-let sign = prompt('Do you want to play "Rock, Paper, Scissors? Yes or No?"');
+
+let playerWinner = [];
+let computerWinner = [];
+let winner = 0;
 
 
-if (sign.toLowerCase() === "yes") {
-  // Create a Nodelist then adding the same eventListener to nodes in that list
-  // Inside forEach, need "selector/element" with arrow function to event listener
-  // Inside .addEventListener must need 'event' and function to run when event is triggered
-  // Event listener contains "element" name and .addEventListener('event', function)
-  buttonCreate(); 
-  const buttons = document.querySelectorAll('button');
-  buttons.forEach((button) => {
-    button.addEventListener('click', round);
-  }); 
-  /*let finalScore = round();
-  console.log(finalScore);
-  let humanScore = finalScore.charAt(0);
-  console.log(humanScore);
-  let comScore = finalScore.charAt(1);
-  console.log(comScore);*/
-  //alert(`Human has ${humanScore} wins. Computer has ${comScore}.`)
-} else {
-  alert("Maybe next time.")
-}
 
+// run buttonCeate()
+buttonCreate(); 
 
+// Create a Nodelist then adding the same eventListener to nodes in that list
+// Inside forEach, need "selector/element" with arrow function to event listener
+// Inside .addEventListener must need 'event' and function to run when event is triggered
+// Event listener contains "element" name and .addEventListener('event', function). "e" function represents the object of the action.
+const selectbuttons = document.querySelectorAll('button');
+const display = document.querySelector('.display');
+selectbuttons.forEach(mychoice => mychoice.addEventListener('click', (e) => {
+  let result;
+  let score;
+  const theChoice = e.target.id;
+  console.log(theChoice);
+  const theComputerChoice = getComputerChoice(); 
+  result = game(theChoice, theComputerChoice);
+  addPoints(result);
+  winner = playerWinner.length + computerWinner.length
+  console.log(winner);
+  endWinner();
+}))
+
+// Creates buttons once the pages loads. Used to have prompt to ask if you want to play. Can make them in HTML instead of DOM.
 function buttonCreate() {
   const body = document.querySelector('body');
   const button1 = document.createElement('button');
@@ -42,29 +47,42 @@ function buttonCreate() {
   body.appendChild(button3);
 }
 
+// Converts the results into adding points to the player or computer's array. This makes it possible to track scores. 
+function addPoints(result){
+  if (result === 1) {
+    playerWinner.push(result);
+    console.log(playerWinner);
+    return;
+  } else if (result === 2) {
+    computerWinner.push(result); 
+    console.log(computerWinner);
+    return;
+  } else {
+    return;
+  }
+}
 
-const display = document.querySelector('.display');
-
-// This takes the game() and loop it 5 times. Then it gives "score" a value based on results.
-function round(e) {
-  let result;
-  let score = 0;
-  //for (i = 1; i <= 5; i++){
-    result = game(getHumanChoice(e), getComputerChoice());
-    console.log(result);
-    /*if (result === 1) {
-      score += 10;
-      console.log(score);
-    } else if (result === 2) {
-      score += 1;
-      console.log(score);
+// Checks if the total scores add up to 5. When it does, it executes who won. Also clears the arrays so you can play again.
+function endWinner() {
+  if(winner === 5) {
+    if (playerWinner.length < computerWinner.length){
+      display.textContent = `You won ${playerWinner.length} games. Computer won ${computerWinner.length} games.
+      COMPUTER WINS! Click to play again.`;
+      winner = 0;
+      playerWinner.length = 0;
+      computerWinner.length = 0;
+      return;
     } else {
-      //i--
-      return score.toString();
+      display.textContent = `You won ${playerWinner.length} games. Computer won ${computerWinner.length} games. 
+      YOU WIN! Click to play again.`;
+      winner = 0;
+      playerWinner.length = 0;
+      computerWinner.length = 0;
+      return;
     }
-  //}
-  return score.toString()*/
-} 
+  }
+  return;
+}
 
 // This takes input and compares them to eachother. Depending on the answer, it will return a set number
 function game(a , b) {
