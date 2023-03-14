@@ -6,11 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title>
     <script src="./javascript/javascript.js" defer></script>  
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-
-  <div class="display"></div>
-
+  <div class="outer-container">
     
+      <div class="display">Let's Play Rock, Paper, or Scissors
+
+      </div>
+      <div class="images">
+        <img class="gameImage rock" src="./images/rockBg.png">
+        <img class="gameImage paper" src="./images/paperBg.png">
+        <img class="gameImage scissors" src="./images/scissorBg.png">
+      </div> 
+      <div class="button-box">
+        <button id="rock" class="click">Rock</button>
+        <button id="paper" class="click">Paper</button>
+        <button id="scissors" class="click">Scissors</button>
+      </div>  
+
+      <div class="score">
+        <div class="yourScore">
+          <p class="you">
+            You: 0
+          </p>
+        </div>
+        <div class="comScore">
+          <p class="com">
+            Com: 0
+          </p>
+        </div>
+
+      </div>
+    
+    
+  </div>
 </body>
 </html>
