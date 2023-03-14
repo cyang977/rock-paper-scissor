@@ -1,0 +1,78 @@
+
+.outer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.display {
+    font-size: 30px;
+}
+
+.score {
+    display: flex;
+    gap: 350px;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.yourScore {
+    color: blue;
+}
+
+.comScore {
+    color: red;
+}
+
+
+.images {
+    width: 674px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    margin: 0;
+    border: 4px solid white;
+}
+
+
+
+button {
+    align-self: auto;
+    flex: initial;
+    width: 150px;
+    border-radius: 5px;
+    padding: 10px 0px 10px 0px;
+}
+
+.hover {
+    background-color: lightgreen;
+    transform: scale(1.15);
+}
+
+.select {
+    border: 4px solid blue;
+}
+
+.selectBoth {
+    border: 4x solid green;
+}
+
+.selectCom {
+    border: 4px solid red;
+}
+
+.button-box {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 100px;
+}
