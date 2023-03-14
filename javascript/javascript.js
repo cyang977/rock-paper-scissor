@@ -3,10 +3,18 @@ let playerWinner = [];
 let computerWinner = [];
 let winner = 0;
 
-
+const rockImg = document.querySelector('.rock');
+const paperImg = document.querySelector('.paper');
+const sciImg = document.querySelector('.scissors');
+const you = document.querySelector('.you');
+const com = document.querySelector('.com');
+you.textContent = `You: ${playerWinner.length}`;
+console.log(you);
+com.textContent = `Com: ${computerWinner.length}`;
+console.log(com);
 
 // run buttonCeate()
-buttonCreate(); 
+// buttonCreate(); 
 
 // Create a Nodelist then adding the same eventListener to nodes in that list
 // Inside forEach, need "selector/element" with arrow function to event listener
@@ -14,38 +22,49 @@ buttonCreate();
 // Event listener contains "element" name and .addEventListener('event', function). "e" function represents the object of the action.
 const selectbuttons = document.querySelectorAll('button');
 const display = document.querySelector('.display');
+selectbuttons.forEach(mychoice => mychoice.addEventListener('mouseover', (e) => {
+  e.target.classList.add('hover');
+}))
+selectbuttons.forEach(mychoice => mychoice.addEventListener('mouseout', (e) => {
+  e.target.classList.remove('hover');
+}))
 selectbuttons.forEach(mychoice => mychoice.addEventListener('click', (e) => {
   let result;
   let score;
   const theChoice = e.target.id;
   console.log(theChoice);
   const theComputerChoice = getComputerChoice(); 
+  highYourChoice(theChoice, theComputerChoice);
   result = game(theChoice, theComputerChoice);
   addPoints(result);
   winner = playerWinner.length + computerWinner.length
   console.log(winner);
+  you.textContent = `You: ${playerWinner.length}`;
+  com.textContent = `Com: ${computerWinner.length}`;
   endWinner();
 }))
 
 // Creates buttons once the pages loads. Used to have prompt to ask if you want to play. Can make them in HTML instead of DOM.
+/*
 function buttonCreate() {
-  const body = document.querySelector('body');
+  const bodyButton = document.querySelector('.button-box');
   const button1 = document.createElement('button');
   button1.textContent = 'Rock';
   button1.id = 'rock';
   console.log(button1.id);
-  body.appendChild(button1);
+  bodyButton.appendChild(button1);
   const button2 = document.createElement('button');
   button2.textContent = 'Paper';
   button2.id = 'paper';
   console.log(button2.id);
-  body.appendChild(button2);
+  bodyButton.appendChild(button2);
   const button3 = document.createElement('button');
   button3.textContent = 'Scissors'; 
   button3.id = 'scissors'
   console.log(button3.id);
-  body.appendChild(button3);
+  bodyButton.appendChild(button3);
 }
+*/
 
 // Converts the results into adding points to the player or computer's array. This makes it possible to track scores. 
 function addPoints(result){
@@ -110,6 +129,47 @@ function game(a , b) {
     display.textContent = "We have a tie.";
       return 0;
   }
+}
+
+function highYourChoice(choice, comChoice) {
+  rockImg.classList.remove('select', 'selectBoth', 'selectCom');
+  paperImg.classList.remove('select', 'selectBoth', 'selectCom');
+  sciImg.classList.remove('select', 'selectBoth', 'selectCom');
+  if (choice === 'rock' && comChoice === 'rock') {
+    rockImg.classList.add('selectBoth');
+    return;
+  } else if (choice === 'paper' && comChoice === 'paper'){
+    paperImg.classList.add('selectBoth');
+    return;
+  } else if (choice === 'scissors' && comChoice === 'scissors'){
+    sciImg.classList.add('selectBoth');
+    return;
+  } else if (choice === 'rock' && choice !== comChoice) {
+    rockImg.classList.add('select');
+      if (comChoice === 'paper') {
+        paperImg.classList.add('selectCom');
+      } else {
+        sciImg.classList.add('selectCom');
+      }
+    return;
+  } else if (choice === 'paper' && choice !== comChoice){
+    paperImg.classList.add('select');
+      if (comChoice === 'rock') {
+        rockImg.classList.add('selectCom')
+      } else {
+        sciImg.classList.add('selectCom');
+      }
+    return;
+  } else {
+      sciImg.classList.add('select');
+      if (comChoice === 'paper') {
+        paperImg.classList.add('selectCom');
+      } else {
+        rockImg.classList.add('selectCom');
+      }
+      return;
+  } 
+  
 }
 
 // This gets an input from the user. They can only chose from "rock", "paper", or "scissors"
